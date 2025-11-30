@@ -11,8 +11,8 @@ class Tipo_Servicio
         $con = $con->ProcedimientoConectar();
         $cadena = "SELECT * FROM `tiposervicio` WHERE estado=1";
         $datos = mysqli_query($con, $cadena);
-        return $datos;
         $con->close();
+        return $datos;
     }
     /*UNO: Procedimiento para sacar un registro*/
     public function uno($idUsuarios)
@@ -22,8 +22,8 @@ class Tipo_Servicio
         $cadena = "SELECT * FROM `tiposervicio` WHERE id = $idUsuarios and estado=1";
         
         $datos = mysqli_query($con, $cadena);
-        return $datos;
         $con->close();
+        return $datos;
     }
    
     public function unoDetalle($Detalle) 
@@ -32,8 +32,8 @@ class Tipo_Servicio
         $con = $con->ProcedimientoConectar();
         $cadena = "SELECT * FROM `tiposervicio` WHERE `detalle` like '%$Detalle%' and estado = 1";
         $datos = mysqli_query($con, $cadena);
-        return $datos;
         $con->close();
+        return $datos;
     }
    
     /*INSERTAR: Procedimiento para insertar */
@@ -44,11 +44,12 @@ class Tipo_Servicio
         $cadena = "INSERT into tiposervicio(detalle, valor, estado) 
         values ( '$detalle', '$valor',1)";
         if (mysqli_query($con, $cadena)) {
+            $con->close();
             return 'ok';
         } else {
+            $con->close();
             return 'Error al insertar en la base de datos';
         }
-        $con->close();
     }
    
 
@@ -60,12 +61,12 @@ class Tipo_Servicio
         $cadena = "update tiposervicio set detalle='$detalle', valor='$valor', estado=$estado where id= $idTipoServicio";
       
         if (mysqli_query($con, $cadena)) {
-
+            $con->close();
             return 'ok';
         } else {
+            $con->close();
             return 'error al actualizar el registro';
         }
-        $con->close();
     }
     /*ELIMINAR: Procedimiento para Eliminar */
     public function Eliminar($idTipoServicio)
@@ -75,11 +76,12 @@ class Tipo_Servicio
         $cadena = "DELETE FROM `tiposervicio` WHERE id = $idTipoServicio";
       
         if (mysqli_query($con, $cadena)) {
+            $con->close();
             return 'ok';
         } else {
+            $con->close();
             return false;
         }
-        $con->close();
     }
     /*TODO: Procedimiento para Eliminar */
     public function Eliminarsuave($idTipoServicio)
@@ -88,12 +90,11 @@ class Tipo_Servicio
         $con = $con->ProcedimientoConectar();
         $cadena = "UPDATE `tiposervicio` SET `estado`=0 WHERE id = $idTipoServicio";
         if (mysqli_query($con, $cadena)) {
+            $con->close();
             return 'ok';
         } else {
+            $con->close();
             return false;
         }
-        $con->close();
     }
-
-     
 }
