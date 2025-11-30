@@ -11,8 +11,8 @@ class Usuarios
         $con = $con->ProcedimientoConectar();
         $cadena = "SELECT usuarios.*, roles.id as IdRol, roles.nombre FROM `usuarios` inner JOIN roles on usuarios.id_rol = roles.id where usuarios.activo = 1";
         $datos = mysqli_query($con, $cadena);
-        return $datos;
         $con->close();
+        return $datos;
     }
     /*TODO: Procedimiento para sacar un registro*/
     public function uno($idUsuarios)
@@ -21,8 +21,8 @@ class Usuarios
         $con = $con->ProcedimientoConectar();
         $cadena = "SELECT * FROM `usuarios` inner JOIN roles on usuarios.id_rol = roles.id where usuarios.id_rol =  $idUsuarios and usuarios.activo = 1";
         $datos = mysqli_query($con, $cadena);
-        return $datos;
         $con->close();
+        return $datos;
     }
    
     public function unoNombreUsuario($NombreUsuario) 
@@ -31,8 +31,9 @@ class Usuarios
         $con = $con->ProcedimientoConectar();
         $cadena = "SELECT * FROM `usuarios` WHERE `nombre_usuario`='$NombreUsuario' and activo = 1";
         $datos = mysqli_query($con, $cadena);
-        return $datos;
         $con->close();
+        return $datos;
+
     }
    
     /*TODO: Procedimiento para insertar */
@@ -43,11 +44,12 @@ class Usuarios
         $cadena = "INSERT into usuarios(nombre_usuario, contrasena, id_rol, fecha_creacion, activo) 
         values ( '$nombre_usuario', '$contrasena', $id_rol, curdate(), 1)";
         if (mysqli_query($con, $cadena)) {
+            $con->close();
             return 'ok';
         } else {
+            $con->close();
             return 'Error al insertar en la base de datos';
         }
-        $con->close();
     }
    
 
@@ -59,12 +61,12 @@ class Usuarios
         $cadena = "update usuarios set nombre_usuario='$nombre_usuario', contrasena='$contrasena', id_rol=$id_rol, fecha_creacion=curdate() where id= $idUsuarios";
       
         if (mysqli_query($con, $cadena)) {
-
+            $con->close();
             return 'ok';
         } else {
+            $con->close();
             return 'error al actualizar el registro';
         }
-        $con->close();
     }
     /*TODO: Procedimiento para Eliminar */
     public function Eliminar($idUsuarios)
@@ -74,11 +76,12 @@ class Usuarios
         $cadena = "DELETE FROM `usuarios` WHERE id = $idUsuarios";
       
         if (mysqli_query($con, $cadena)) {
+            $con->close();
             return 'ok';
         } else {
+            $con->close();
             return false;
         }
-        $con->close();
     }
     /*TODO: Procedimiento para Eliminar */
     public function Eliminarsuave($idUsuarios)
@@ -87,11 +90,12 @@ class Usuarios
         $con = $con->ProcedimientoConectar();
         $cadena = "UPDATE `usuarios` SET `activo`=0 WHERE id = $idUsuarios";
         if (mysqli_query($con, $cadena)) {
+            $con->close();
             return 'ok';
         } else {
+            $con->close();
             return false;
         }
-        $con->close();
     }
 
      public function login1($nombre_usuario, $contrasena){
