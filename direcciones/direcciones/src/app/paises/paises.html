@@ -1,0 +1,40 @@
+<div class= "d-flex justify-content-between nb-3">
+    <h3>Listado de paises</h3>
+    <button class= "btn btn-primary" (click)="nuevopais()">Agregar Pais</button>
+</div>
+
+<table class = "table table-responsive table-bordered table-stripped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre de Pais</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (pais of listadoPaises; track pais.id; let i = $index) {
+      <tr>
+        <td class="text-center fw-bold">{{ i + 1 }}</td>
+        <td>{{ pais.nombre }}</td>
+        <td class="text-center">
+          <button class="btn btn-warning btn-sm me-2" routerLink="/editarpais/{{pais.id}}">
+            <i class="bi bi-pencil me-1"></i>Editar
+          </button>
+          <button class="btn btn-danger btn-sm"
+            (click) = 'eliminar(pais.id)'>
+            <i class="bi bi-trash me-1"></i>Eliminar
+          </button>
+        </td>
+      </tr>
+    }
+    @empty {
+      <tr>
+        <td colspan="3" class="text-center text-muted py-4">
+          <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+          No hay países registrados
+        </td>
+      </tr>
+    }
+    </tbody>
+
+</table>

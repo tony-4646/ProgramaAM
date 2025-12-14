@@ -56,8 +56,8 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="tipo/tipoacceso.views.php" target="base" class="menu-link">
-                        <div data-i18n="Blank">Tipos de Acceso</div>
+                    <a href="Noticias/noticias.views.php" target="base" class="menu-link">
+                        <div data-i18n="Blank">Noticias</div>
                     </a>
                 </li>
                 <li class="menu-item">
@@ -73,6 +73,11 @@
                 <li class="menu-item">
                     <a href="clientes/clientes.views.php" target="base" class="menu-link">
                         <div data-i18n="Blank">Clientes</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="Noticias/noticias.views.php" target="base" class="menu-link">
+                        <div data-i18n="Blank">Noticias</div>
                     </a>
                 </li>
             </ul>

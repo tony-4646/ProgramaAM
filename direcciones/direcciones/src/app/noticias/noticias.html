@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Imagen</th>
+            <th>Titulo</th>
+            <th>Contenido</th>
+        </tr>
+    </thead>
+    <body>
+        
+        @for (item of lista_noticias; track $index; let i = $index) {
+
+            <td>{{i + 1}}</td>
+            <td><img [src]="item.urlToImage" alt="Imagen de la noticia" width="100%"></td>
+            <td>{{item.title}}</td>
+            <td>{{item.description}}</td>
+        }
+    </body>
+</table>
