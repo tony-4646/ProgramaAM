@@ -1,10 +1,11 @@
 export interface Inoticia {
-    id:string;
-    title:string;
-    description:string;
-    urlToImage:string;
-    url:string;
-    publishedAt:Date;
-    author:string;
-    content:string;
+  title: string;
+  description: string;
+  image: string; 
+  url: string;
+  publishedAt: string;
+  source: {
+    name: string;
+    url: string;
+  };
 }
